@@ -16,3 +16,18 @@ The script requires the following parameters:
 - domain_name: The domain name of the Salad Cloud API.
 - api_key: The API key for the Salad Cloud API.
 - data: The data to be sent to the Salad Cloud API.
+
+## Building the Docker Image
+
+First, [download the model](https://huggingface.co/hivemind/gpt-j-6B-8bit/tree/main) from Huggingface. Then, place the `pytorch_model.bin` in the `gpt-j-6b-gpu-docker` directory.
+
+From project root:
+```shell
+docker build -t gpt-j-server:latest -f ./gpt-j-6b-gpu-docker/Dockerfile.hf ./gpt-j-6b-gpu-docker/
+```
+
+## Running the Docker Container
+
+```shell
+docker run --gpus all -p 8888:8888 gpt-j-server:latest
+```
