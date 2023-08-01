@@ -3,7 +3,8 @@ FROM pytorch/pytorch:2.0.1-cuda11.7-cudnn8-runtime
 WORKDIR /app
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG MODEL=hivemind/gpt-j-6B-8bit
+ARG MODEL=EleutherAI/gpt-j-6b
+ARG BRANCH=float16
 ENV MODEL_DIR=/models
 ENV MODEL=${MODEL}
 ENV TZ=Etc/UTC
@@ -16,7 +17,7 @@ RUN apt-get update -y && apt-get upgrade -y && apt-get install --no-install-reco
     libglib2.0-0 \
     build-essential
 
-RUN git clone "https://huggingface.co/${MODEL}" \
+RUN git clone --branch ${BRANCH} "https://huggingface.co/${MODEL}" \
     "/models/${MODEL}"
 COPY pytorch_model.bin /models/${MODEL}/pytorch_model.bin
 

@@ -19,7 +19,7 @@ The script requires the following parameters:
 
 ## Building the Docker Image
 
-First, [download the model](https://huggingface.co/hivemind/gpt-j-6B-8bit/tree/main) from Huggingface. Then, place the `pytorch_model.bin` in the `gpt-j-6b-gpu-docker` directory.
+First, [download the model](https://huggingface.co/EleutherAI/gpt-j-6b/tree/float16) from Huggingface. Then, place the `pytorch_model.bin` in the `gpt-j-6b-gpu-docker` directory.
 
 From project root:
 ```shell

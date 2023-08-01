@@ -23,7 +23,7 @@ def format_timedelta(td):
 
     
 t1 = datetime.now()
-tokenizer = AutoTokenizer.from_pretrained("EleutherAI/gpt-j-6b")
+tokenizer = AutoTokenizer.from_pretrained(model_path)
 print('⌚ Model tokenizer created', format_timedelta(datetime.now()-t1))
         
 t1 = datetime.now()
@@ -34,11 +34,11 @@ t1 = datetime.now()
 
 model.cuda()
 
-print('⌚ Model half().cuda()', format_timedelta(datetime.now()-t1))
+print('⌚ Model .cuda()', format_timedelta(datetime.now()-t1))
 
 t1 = datetime.now()
 prompt = "Hello my name is Paul and"
-input_ids = tokenizer.encode(str(prompt), return_tensors='pt').cuda()
+input_ids = tokenizer(prompt, return_tensors='pt').input_ids.cuda()
 
 
 output = model.generate(
@@ -46,8 +46,8 @@ output = model.generate(
     do_sample=True,
     max_length=100,
     temperature=0.8,
-    top_k=0,
-    top_p=0.7,
+    # top_k=0,
+    # top_p=0.7,
 )
 print('⌚ Test response time', format_timedelta(datetime.now() - t1))
 print('🤖 Test response', tokenizer.decode(output[0], skip_special_tokens=True))
