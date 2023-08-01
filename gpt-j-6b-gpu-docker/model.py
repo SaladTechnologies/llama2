@@ -55,7 +55,7 @@ print('🤖 Test response', tokenizer.decode(output[0], skip_special_tokens=True
 def eval(input):
     t1 = datetime.now()
 
-    input_ids = tokenizer.encode(str(input.text), return_tensors='pt').cuda()
+    input_ids = tokenizer(prompt, return_tensors='pt').input_ids.cuda()
     token_count = input_ids.size(dim=1)
     if token_count + input.generate_tokens_limit > 2048:
         raise Exception(f"This model can't generate more then 2048 tokens, you passed {token_count} "+
