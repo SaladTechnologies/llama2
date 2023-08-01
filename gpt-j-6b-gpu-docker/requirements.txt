@@ -1,7 +1,7 @@
-numpy==1.25.0
+numpy
 transformers
-bitsandbytes-cuda117
-accelerate==0.20.3
+accelerate
 fastapi
 uvicorn
 pydantic
+scipy

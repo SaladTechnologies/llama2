@@ -22,11 +22,11 @@ def format_timedelta(td):
 
     
 t1 = datetime.now()
-tokenizer = AutoTokenizer.from_pretrained(model_path, load_in_8bit=True, device_map="auto")
+tokenizer = AutoTokenizer.from_pretrained("EleutherAI/gpt-j-6b")
 print('⌚ Model tokenizer created', format_timedelta(datetime.now()-t1))
         
 t1 = datetime.now()
-model = AutoModelForCausalLM.from_pretrained(model_path, load_in_8bit=True, device_map="auto")
+model = AutoModelForCausalLM.from_pretrained(model_path)
 print('⌚ Model loaded (.from_pretrained)', format_timedelta(datetime.now()-t1))
 
 t1 = datetime.now()
