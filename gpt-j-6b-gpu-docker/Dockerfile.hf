@@ -7,6 +7,7 @@ ARG MODEL=hivemind/gpt-j-6B-8bit
 ENV MODEL_DIR=/models
 ENV MODEL=${MODEL}
 ENV TZ=Etc/UTC
+ENV PYTHONUNBUFFERED 1
 
 RUN apt-get update -y && apt-get upgrade -y && apt-get install --no-install-recommends --no-install-suggests -y \
     git \
