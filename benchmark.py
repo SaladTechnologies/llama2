@@ -1,6 +1,7 @@
 import requests
 import time
 import os
+import json
 
 def fetch_data(domain_name, api_key, data):
     start_time = time.time()
