@@ -1,5 +1,6 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from datetime import datetime
+import torch
 import os
 
 model = os.environ.get('MODEL')
@@ -26,7 +27,7 @@ tokenizer = AutoTokenizer.from_pretrained("EleutherAI/gpt-j-6b")
 print('⌚ Model tokenizer created', format_timedelta(datetime.now()-t1))
         
 t1 = datetime.now()
-model = AutoModelForCausalLM.from_pretrained(model_path)
+model = AutoModelForCausalLM.from_pretrained(model_path, torch_dtype=torch.float16 )
 print('⌚ Model loaded (.from_pretrained)', format_timedelta(datetime.now()-t1))
 
 t1 = datetime.now()
