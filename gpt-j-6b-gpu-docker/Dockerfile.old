@@ -3,12 +3,12 @@ RUN apt update\
   && apt install -y python3 python3-pip wget git zstd curl\
   && DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC 
 RUN apt install -y nvidia-cuda-toolkit
-RUN apt-get update && apt-get install -y socat
-CMD socat -d -t -u -n TCP-LISTEN:8888,fork TCP:localhost:8080
+# RUN apt-get update && apt-get install -y socat
+# CMD socat -d -t -u -n TCP-LISTEN:8888,fork TCP:localhost:8080
 RUN wget -c https://the-eye.eu/public/AI/GPT-J-6B/step_383500_slim.tar.zstd
 RUN tar -I zstd -xf step_383500_slim.tar.zstd
 RUN rm step_383500_slim.tar.zstd
-FROM python:3.9
+# FROM python:3.9
 RUN git clone https://github.com/kingoflolz/mesh-transformer-jax.git
 RUN pip3 install -r mesh-transformer-jax/requirements.txt
 RUN pip3 install torch mesh-transformer-jax/ jax==0.2.12 jaxlib==0.1.68 -f https://storage.googleapis.com/jax-releases/jax_releases.html
@@ -19,6 +19,6 @@ RUN python3 converttotorch.py
 RUN pip3 install fastapi pydantic uvicorn && pip3 install numpy --upgrade && pip3 install git+https://github.com/finetuneanon/transformers@gpt-j
 COPY web.py ./
 COPY model.py ./
-CMD uvicorn web:app --port 8080 --host 0.0.0.0
+CMD uvicorn web:app --port 8888 --host *
 
 

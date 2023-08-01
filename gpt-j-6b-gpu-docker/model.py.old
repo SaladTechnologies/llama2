@@ -1,10 +1,7 @@
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import GPTNeoForCausalLM, AutoConfig, GPT2Tokenizer, AutoTokenizer
+import transformers
+import torch
 from datetime import datetime
-import os
-
-model = os.environ.get('MODEL')
-model_dir = os.environ.get('MODEL_DIR')
-model_path = os.path.join(model_dir, model)
 
 def format_timedelta(td):
     seconds = td.total_seconds()
@@ -22,16 +19,16 @@ def format_timedelta(td):
 
     
 t1 = datetime.now()
-tokenizer = AutoTokenizer.from_pretrained(model_path, load_in_8bit=True, device_map="auto")
+tokenizer = transformers.GPT2Tokenizer.from_pretrained('gpt2')
 print('⌚ Model tokenizer created', format_timedelta(datetime.now()-t1))
         
 t1 = datetime.now()
-model = AutoModelForCausalLM.from_pretrained(model_path, load_in_8bit=True, device_map="auto")
+model = GPTNeoForCausalLM.from_pretrained('./gpt-j-6B')
 print('⌚ Model loaded (.from_pretrained)', format_timedelta(datetime.now()-t1))
 
 t1 = datetime.now()
 
-model.cuda()
+model.half().cuda()
 
 print('⌚ Model half().cuda()', format_timedelta(datetime.now()-t1))
 
