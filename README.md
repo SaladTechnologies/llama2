@@ -19,7 +19,16 @@ The script requires the following parameters:
 
 ## Building the Docker Image
 
-First, [download the model](https://huggingface.co/meta-llama/Llama-2-7b-chat/tree/main) from Huggingface. Then, place the `consolidated.00.pth` in the `llama2-7b-chat-gpu-docker` directory.
+First, [download the model](https://huggingface.co/meta-llama/Llama-2-7b-chat/tree/main) from Huggingface. Then, run the `convert_llama_weights_to_hf.py` script to convert the model to a Huggingface format. 
+
+```shell
+python3 llama2-7b-chat-gpu-docker/convert_llama_weights_to_hf.py \
+--input_dir llama2-7b-chat-gpu-docker/model \
+--model_size tokenizer_only \
+--output_dir llama2-7b-chat-gpu-docker/model_hf
+```
+
+This will create a `model_hf` file in the `./llama2-7b-chat-gpu-docker` directory.
 
 From project root:
 ```shell
