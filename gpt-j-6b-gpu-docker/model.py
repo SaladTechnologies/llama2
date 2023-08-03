@@ -27,7 +27,7 @@ tokenizer = AutoTokenizer.from_pretrained(model_path)
 print('⌚ Model tokenizer created', format_timedelta(datetime.now()-t1))
         
 t1 = datetime.now()
-model = AutoModelForCausalLM.from_pretrained(model_path, torch_dtype=torch.float16 )
+model = AutoModelForCausalLM.from_pretrained(model_path, torch_dtype=torch.float16, low_cpu_mem_usage=True )
 print('⌚ Model loaded (.from_pretrained)', format_timedelta(datetime.now()-t1))
 
 t1 = datetime.now()
