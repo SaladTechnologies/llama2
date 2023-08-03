@@ -23,11 +23,11 @@ First, [download the model](https://huggingface.co/EleutherAI/gpt-j-6b/tree/floa
 
 From project root:
 ```shell
-docker build -t gpt-j-server:latest -f ./gpt-j-6b-gpu-docker/Dockerfile.hf ./gpt-j-6b-gpu-docker/
+docker build -t saladtechnologies/gpt-j-6b:latest -f ./gpt-j-6b-gpu-docker/Dockerfile.hf ./gpt-j-6b-gpu-docker
 ```
 
 ## Running the Docker Container
 
 ```shell
-docker run --gpus all -p 8888:8888 gpt-j-server:latest
+docker run --gpus all -p 8888:8888 saladtechnologies/gpt-j-6b:latest
 ```
