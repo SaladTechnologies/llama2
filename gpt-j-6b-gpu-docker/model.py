@@ -69,6 +69,7 @@ def eval(input):
         temperature=input.temperature,
     )
     resp = tokenizer.decode(output[0], skip_special_tokens=True)
-    print(f'⌚ Response time {format_timedelta(datetime.now() - t1)} in len: { len(input.text) } resp len { len(resp) }')
-    return resp
+    inference_time = datetime.now() - t1
+    print(f'⌚ Response time {format_timedelta(inference_time)} in len: { len(input.text) } resp len { len(resp) }')
+    return resp, inference_time
 

@@ -17,8 +17,8 @@ async def generate(input: Input):
     # we intentionally make non-await call to model, on GPU implementation it can't be paralelized
     # for parallel generation please check running GPT-J on Google TPU https://github.com/kingoflolz/mesh-transformer-jax
     try:
-        output = model.eval(input)
-        return {"completion": output}
+        output, inference_time = model.eval(input)
+        return {"completion": output, "inference_time": str(inference_time)}
     except Exception as e:
         return {"error": str(e)}
 
