@@ -28,7 +28,7 @@ python3 llama2-7b-chat-gpu-docker/convert_llama_weights_to_hf.py \
 --output_dir llama2-7b-chat-gpu-docker/model_hf
 ```
 
-This will create a `model_hf` file in the `./llama2-7b-chat-gpu-docker` directory.
+This will create a `model_hf` directory in the `./llama2-7b-chat-gpu-docker` directory.
 
 From project root:
 ```shell
