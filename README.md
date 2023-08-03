@@ -19,11 +19,11 @@ The script requires the following parameters:
 
 ## Building the Docker Image
 
-First, [download the model](https://huggingface.co/meta-llama/Llama-2-7b-chat/tree/main) from Huggingface. Then, place the `consolidated.00.pth` in the `llama2-gpu-docker` directory.
+First, [download the model](https://huggingface.co/meta-llama/Llama-2-7b-chat/tree/main) from Huggingface. Then, place the `consolidated.00.pth` in the `llama2-7b-chat-gpu-docker` directory.
 
 From project root:
 ```shell
-docker build -t saladtechnologies/llama2-7b-chat:latest -f ./llama2-gpu-docker/Dockerfile.hf ./llama2-gpu-docker
+docker build -t saladtechnologies/llama2-7b-chat:latest -f ./llama2-7b-chat-gpu-docker/Dockerfile ./llama2-7b-chat-gpu-docker
 ```
 
 ## Running the Docker Container

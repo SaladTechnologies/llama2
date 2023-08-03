@@ -17,9 +17,7 @@ RUN apt-get update -y && apt-get upgrade -y && apt-get install --no-install-reco
     libglib2.0-0 \
     build-essential
 
-RUN git clone --branch ${BRANCH} "https://huggingface.co/${MODEL}" \
-    "/models/${MODEL}"
-COPY consolidated.00.pth /models/${MODEL}/consolidated.00.pth
+COPY ./model_hf/ ${MODEL_DIR}/${MODEL}
 
 # We need the latest pip
 RUN pip install --upgrade --no-cache-dir pip
