@@ -3,8 +3,8 @@ FROM pytorch/pytorch:2.0.1-cuda11.7-cudnn8-runtime
 WORKDIR /app
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG MODEL=EleutherAI/gpt-j-6b
-ARG BRANCH=float16
+ARG MODEL=meta-llama/Llama-2-7b-chat
+ARG BRANCH=main
 ENV MODEL_DIR=/models
 ENV MODEL=${MODEL}
 ENV TZ=Etc/UTC
@@ -19,7 +19,7 @@ RUN apt-get update -y && apt-get upgrade -y && apt-get install --no-install-reco
 
 RUN git clone --branch ${BRANCH} "https://huggingface.co/${MODEL}" \
     "/models/${MODEL}"
-COPY pytorch_model.bin /models/${MODEL}/pytorch_model.bin
+COPY consolidated.00.pth /models/${MODEL}/consolidated.00.pth
 
 # We need the latest pip
 RUN pip install --upgrade --no-cache-dir pip
